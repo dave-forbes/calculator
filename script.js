@@ -64,6 +64,7 @@ const equals = document.querySelector('#equals');
 const clear = document.querySelector('#clear');
 const display = document.querySelector('#display');
 const calculator = document.querySelector('#calculator');
+const decimal = document.querySelector('#decimal');
 const allButtons = document.querySelectorAll('button');
 
 let displayValue = '';
@@ -84,7 +85,7 @@ allButtons.forEach(item => item.addEventListener('click', () => {
     operatorIndex = displayValue.search(/[^0-9^.]/g);
   }
   num1 = Number(displayValue.slice(0, operatorIndex));
-  num2 = Number(displayValue.slice(operatorIndex + 1, displayValue.length));
+  num2 = Number(displayValue.slice(operatorIndex + 1, displayValue.length + 1));
   operator = displayValue[operatorIndex];
   result = operate(num1, num2, operator);
 }))
@@ -135,9 +136,22 @@ divideButton.addEventListener('click', () => {
 equals.addEventListener('click', () => {
   display.innerHTML = '';
   let span = document.createElement('span');
-  span.textContent = result;
+  if (result == undefined) {
+    span.textContent = 'Error';
+    display.appendChild(span);
+    displayValue = '';
+  } else {
+    span.textContent = result;
+    display.appendChild(span);
+    displayValue = result.toString();
+  }
+})
+
+decimal.addEventListener('click', () => {
+  let span = document.createElement('p');
+  span.textContent = '.';
   display.appendChild(span);
-  displayValue = result.toString();
+  displayValue += '.';
 })
 
 clear.addEventListener('click', () => {
