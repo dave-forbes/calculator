@@ -88,10 +88,10 @@ divideButton.addEventListener('click', () => {
 })
 
 equals.addEventListener('click', () => {
-  let displayArr = displayValue.split('');
-  num1 = Number(displayArr[0]);
-  operator = displayArr[1];
-  num2 = Number(displayArr[2]);
+  let index = displayValue.search(/[^0-9]/g);
+  num1 = Number(displayValue.slice(0, index));
+  num2 = Number(displayValue.slice(index + 1, displayValue.length));
+  operator = displayValue[index];
   let result = operate(num1, num2, operator)
   display.innerHTML = '';
   let span = document.createElement('span');
@@ -103,3 +103,4 @@ clear.addEventListener('click', () => {
   display.innerHTML = '';
   displayValue = '';
 })
+
