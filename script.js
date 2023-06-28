@@ -47,7 +47,19 @@ const divideButton = document.querySelector('#divide');
 const equals = document.querySelector('#equals');
 const clear = document.querySelector('#clear');
 const display = document.querySelector('#display');
+const calculator = document.querySelector('#calculator');
+
 let displayValue = '';
+let result = 0;
+let operatorIndex;
+
+calculator.addEventListener('click', () => {
+  operatorIndex = displayValue.search(/[^0-9]/g);
+  num1 = Number(displayValue.slice(0, operatorIndex));
+  num2 = Number(displayValue.slice(operatorIndex + 1, displayValue.length));
+  operator = displayValue[operatorIndex];
+  result = operate(num1, num2, operator);
+})
 
 let arr = [zero, one, two, three, four, five, six, seven, eight, nine, addButton, subtractButton, multiplyButton, divideButton, equals, clear];
 
@@ -61,6 +73,13 @@ for (let i = 0; i < 10; i++) {
 }
 
 addButton.addEventListener('click', () => {
+  if (result) {
+    display.innerHTML = '';
+    let span = document.createElement('span');
+    span.textContent = result;
+    display.appendChild(span);
+    displayValue = result.toString();
+  }
   let span = document.createElement('span');
   span.textContent = '+';
   display.appendChild(span);
@@ -68,6 +87,13 @@ addButton.addEventListener('click', () => {
 })
 
 subtractButton.addEventListener('click', () => {
+  if (result) {
+    display.innerHTML = '';
+    let span = document.createElement('span');
+    span.textContent = result;
+    display.appendChild(span);
+    displayValue = result.toString();
+  }
   let span = document.createElement('span');
   span.textContent = '-';
   display.appendChild(span);
@@ -75,6 +101,13 @@ subtractButton.addEventListener('click', () => {
 })
 
 multiplyButton.addEventListener('click', () => {
+  if (result) {
+    display.innerHTML = '';
+    let span = document.createElement('span');
+    span.textContent = result;
+    display.appendChild(span);
+    displayValue = result.toString();
+  }
   let span = document.createElement('span');
   span.textContent = 'x';
   display.appendChild(span);
@@ -82,6 +115,13 @@ multiplyButton.addEventListener('click', () => {
 })
 
 divideButton.addEventListener('click', () => {
+  if (result) {
+    display.innerHTML = '';
+    let span = document.createElement('span');
+    span.textContent = result;
+    display.appendChild(span);
+    displayValue = result.toString();
+  }
   let span = document.createElement('span');
   span.textContent = '÷';
   display.appendChild(span);
@@ -89,11 +129,6 @@ divideButton.addEventListener('click', () => {
 })
 
 equals.addEventListener('click', () => {
-  let index = displayValue.search(/[^0-9]/g);
-  num1 = Number(displayValue.slice(0, index));
-  num2 = Number(displayValue.slice(index + 1, displayValue.length));
-  operator = displayValue[index];
-  let result = operate(num1, num2, operator)
   display.innerHTML = '';
   let span = document.createElement('span');
   span.textContent = result;
