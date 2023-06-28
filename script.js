@@ -11,7 +11,11 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-  return num1 / num2;
+  if (num2 == 0) {
+    return 'Impossible...';
+  } else {
+    return num1 / num2;
+  }
 }
 
 let num1;
@@ -48,10 +52,18 @@ const equals = document.querySelector('#equals');
 const clear = document.querySelector('#clear');
 const display = document.querySelector('#display');
 const calculator = document.querySelector('#calculator');
+const allButtons = document.querySelectorAll('button');
 
 let displayValue = '';
 let result = 0;
 let operatorIndex;
+
+allButtons.forEach(item => item.addEventListener('click', () => {
+  if (displayValue == 'Impossible...') {
+    display.innerHTML = '';
+    displayValue = '';
+  }
+}))
 
 calculator.addEventListener('click', () => {
   operatorIndex = displayValue.search(/[^0-9]/g);
