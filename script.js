@@ -97,6 +97,7 @@ equals.addEventListener('click', () => {
   let span = document.createElement('span');
   span.textContent = result;
   display.appendChild(span);
+  displayValue = result;
 })
 
 clear.addEventListener('click', () => {
