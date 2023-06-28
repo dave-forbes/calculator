@@ -4,20 +4,31 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  background-color: bisque;
 }
 
 button {
   border-radius: 10px;
+  font-size: 20px;
+  -webkit-box-shadow: inset 10px 10px 90px -40px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: inset 10px 10px 90px -40px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 10px 10px 90px -40px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+  background-color: white;
+  transition: 0.3s;
 }
 
 #display {
   display: flex;
   justify-content: end;
   align-items: center;
+  border: solid 1px rgb(133, 133, 133);
 }
 
 span {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 p {
@@ -32,6 +43,7 @@ p {
   -webkit-box-shadow: 10px 10px 37px 5px rgba(0, 0, 0, 0.59);
   -moz-box-shadow: 10px 10px 37px 5px rgba(0, 0, 0, 0.59);
   box-shadow: 10px 10px 37px 5px rgba(0, 0, 0, 0.59);
+  border: solid 1px rgb(133, 133, 133);
 }
 
 #display {
@@ -39,7 +51,7 @@ p {
   background-color: beige;
   margin-bottom: 10px;
   border-radius: 10px;
-  padding: 20px 10px;
+  padding: 20px;
   -webkit-box-shadow: inset 10px 10px 90px -40px rgba(0, 0, 0, 1);
   -moz-box-shadow: inset 10px 10px 90px -40px rgba(0, 0, 0, 1);
   box-shadow: inset 10px 10px 90px -40px rgba(0, 0, 0, 1);
