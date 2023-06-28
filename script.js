@@ -76,14 +76,14 @@ subtractButton.addEventListener('click', () => {
 
 multiplyButton.addEventListener('click', () => {
   let span = document.createElement('span');
-  span.textContent = '*';
+  span.textContent = 'x';
   display.appendChild(span);
   displayValue += '*';
 })
 
 divideButton.addEventListener('click', () => {
   let span = document.createElement('span');
-  span.textContent = '/';
+  span.textContent = '÷';
   display.appendChild(span);
   displayValue += '/';
 })
@@ -98,7 +98,7 @@ equals.addEventListener('click', () => {
   let span = document.createElement('span');
   span.textContent = result;
   display.appendChild(span);
-  displayValue = result;
+  displayValue = result.toString();
 })
 
 clear.addEventListener('click', () => {
