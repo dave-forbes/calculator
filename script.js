@@ -29,8 +29,10 @@ function operate(num1, num2, operator) {
     return Math.round(subtract(num1, num2) * 1000) / 1000;
   } else if (operator == '*') {
     return Math.round(multiply(num1, num2) * 1000) / 1000;
-  } else if (operator == '/') {
+  } else if (operator == '/' && num2 !== 0) {
     return Math.round(divide(num1, num2) * 1000) / 1000;
+  } else if (operator == '/' && num2 == 0) {
+    return divide(num1, num2);
   }
 }
 
@@ -76,7 +78,11 @@ allButtons.forEach(item => item.addEventListener('click', () => {
 }))
 
 allButtons.forEach(item => item.addEventListener('click', () => {
-  operatorIndex = displayValue.search(/[^0-9^.]/g);
+  if (displayValue[0] == '-') {
+    operatorIndex = displayValue.slice(1).search(/[^0-9^.]/g) + 1;
+  } else {
+    operatorIndex = displayValue.search(/[^0-9^.]/g);
+  }
   num1 = Number(displayValue.slice(0, operatorIndex));
   num2 = Number(displayValue.slice(operatorIndex + 1, displayValue.length));
   operator = displayValue[operatorIndex];
@@ -96,15 +102,15 @@ for (let i = 0; i < 10; i++) {
 
 addButton.addEventListener('click', () => {
   checkResult(result);
-  let span = document.createElement('span');
-  span.textContent = '+';
+  let span = document.createElement('p');
+  span.textContent = ' + ';
   display.appendChild(span);
   displayValue += '+';
 })
 
 subtractButton.addEventListener('click', () => {
   checkResult(result);
-  let span = document.createElement('span');
+  let span = document.createElement('p');
   span.textContent = '-';
   display.appendChild(span);
   displayValue += '-';
@@ -112,7 +118,7 @@ subtractButton.addEventListener('click', () => {
 
 multiplyButton.addEventListener('click', () => {
   checkResult(result);
-  let span = document.createElement('span');
+  let span = document.createElement('p');
   span.textContent = 'x';
   display.appendChild(span);
   displayValue += '*';
@@ -120,7 +126,7 @@ multiplyButton.addEventListener('click', () => {
 
 divideButton.addEventListener('click', () => {
   checkResult(result);
-  let span = document.createElement('span');
+  let span = document.createElement('p');
   span.textContent = '÷';
   display.appendChild(span);
   displayValue += '/';
