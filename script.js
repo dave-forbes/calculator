@@ -77,6 +77,7 @@ const calculator = document.querySelector('#calculator');
 const decimal = document.querySelector('#decimal');
 const cancelError = document.querySelector('#ce');
 const squareRootButton = document.querySelector('#sqroot');
+const plusMinus = document.querySelector('#plus-minus');
 const allButtons = document.querySelectorAll('button');
 let displayValue = '';
 let result = 0;
@@ -158,6 +159,16 @@ squareRootButton.addEventListener('click', () => {
   span.textContent = '√';
   display.appendChild(span);
   displayValue += '√';
+})
+
+plusMinus.addEventListener('click', () => {
+  if (displayValue[0] !== '-') {
+    displayValue = '-' + displayValue;
+    display.firstChild.textContent = '-' + display.firstChild.textContent;
+  } else {
+    displayValue = displayValue.slice(1);
+    display.firstChild.textContent = display.firstChild.textContent.slice(1);
+  }
 })
 
 clear.addEventListener('click', () => {
