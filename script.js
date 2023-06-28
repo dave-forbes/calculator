@@ -24,13 +24,13 @@ let operator;
 
 function operate(num1, num2, operator) {
   if (operator == '+') {
-    return Math.round(add(num1, num2) * 1000) / 1000;
+    return Math.round(add(num1, num2) * 1000000) / 1000000;
   } else if (operator == '-') {
-    return Math.round(subtract(num1, num2) * 1000) / 1000;
+    return Math.round(subtract(num1, num2) * 1000000) / 1000000;
   } else if (operator == '*') {
-    return Math.round(multiply(num1, num2) * 1000) / 1000;
+    return Math.round(multiply(num1, num2) * 1000000) / 1000000;
   } else if (operator == '/' && num2 !== 0) {
-    return Math.round(divide(num1, num2) * 1000) / 1000;
+    return Math.round(divide(num1, num2) * 1000000) / 1000000;
   } else if (operator == '/' && num2 == 0) {
     return divide(num1, num2);
   }
