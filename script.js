@@ -30,6 +30,7 @@ function operate(num1, num2, operator) {
   }
 }
 
+const zero = document.querySelector('#zero');
 const one = document.querySelector('#one');
 const two = document.querySelector('#two');
 const three = document.querySelector('#three');
@@ -48,14 +49,14 @@ const clear = document.querySelector('#clear');
 const display = document.querySelector('#display');
 let displayValue = '';
 
-let arr = [one, two, three, four, five, six, seven, eight, nine, addButton, subtractButton, multiplyButton, divideButton, equals, clear];
+let arr = [zero, one, two, three, four, five, six, seven, eight, nine, addButton, subtractButton, multiplyButton, divideButton, equals, clear];
 
-for (let i = 0; i < 9; i++) {
+for (let i = 0; i < 10; i++) {
   arr[i].addEventListener('click', () => {
     let span = document.createElement('span');
-    span.textContent = i + 1;
+    span.textContent = i;
     display.appendChild(span);
-    displayValue += i + 1;
+    displayValue += i;
   })
 }
 
