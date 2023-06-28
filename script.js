@@ -74,7 +74,7 @@ let operatorIndex;
 let arr = [zero, one, two, three, four, five, six, seven, eight, nine, addButton, subtractButton, multiplyButton, divideButton, equals, clear];
 
 allButtons.forEach(item => item.addEventListener('click', () => {
-  if (displayValue == 'Impossible...' || displayValue == 'Error') {
+  if (displayValue == 'Impossible...' || displayValue == 'Error' || display.firstChild.textContent == '0') {
     display.innerHTML = '';
     displayValue = '';
   }
