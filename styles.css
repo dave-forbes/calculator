@@ -10,8 +10,19 @@ button {
   border-radius: 10px;
 }
 
+#display {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+span {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
 #calculator {
-  height: 30vh;
+  height: 20vh;
   width: 20vh;
   background-color: dimgray;
   border-radius: 10px;
