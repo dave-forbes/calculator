@@ -18,6 +18,14 @@ function divide(num1, num2) {
   }
 }
 
+function squareRoot(num1) {
+  for (let i = 0; i <= num1; i++) {
+    if (i * i == num1) {
+      return i;
+    }
+  }
+}
+
 let num1;
 let num2;
 let operator;
@@ -33,6 +41,8 @@ function operate(num1, num2, operator) {
     return Math.round(divide(num1, num2) * 1000000) / 1000000;
   } else if (operator == '/' && num2 == 0) {
     return divide(num1, num2);
+  } else if (operator == '√') {
+    return squareRoot(num1);
   }
 }
 
@@ -66,19 +76,20 @@ const display = document.querySelector('#display');
 const calculator = document.querySelector('#calculator');
 const decimal = document.querySelector('#decimal');
 const cancelError = document.querySelector('#ce');
+const squareRootButton = document.querySelector('#sqroot');
 const allButtons = document.querySelectorAll('button');
 let displayValue = '';
 let result = 0;
 let operatorIndex;
 
-let arr = [zero, one, two, three, four, five, six, seven, eight, nine, addButton, subtractButton, multiplyButton, divideButton, equals, clear];
-
 allButtons.forEach(item => item.addEventListener('click', () => {
-  if (displayValue == 'Impossible...' || displayValue == 'Error' || display.firstChild.textContent == '0') {
+  if (displayValue == 'Impossible...' || displayValue == 'Error' || displayValue == '0') {
     display.innerHTML = '';
     displayValue = '';
   }
 }))
+
+let arr = [zero, one, two, three, four, five, six, seven, eight, nine];
 
 for (let i = 0; i < 10; i++) {
   arr[i].addEventListener('click', () => {
@@ -140,6 +151,13 @@ decimal.addEventListener('click', () => {
   span.textContent = '.';
   display.appendChild(span);
   displayValue += '.';
+})
+
+squareRootButton.addEventListener('click', () => {
+  let span = document.createElement('p');
+  span.textContent = '√';
+  display.appendChild(span);
+  displayValue += '√';
 })
 
 clear.addEventListener('click', () => {
