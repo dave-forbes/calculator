@@ -20,11 +20,18 @@ span {
   font-size: 20px;
 }
 
+p {
+  margin: 0 5px;
+}
+
 #calculator {
   width: 30vh;
   background-color: dimgray;
   border-radius: 10px;
   padding: 20px;
+  -webkit-box-shadow: 10px 10px 37px 5px rgba(0, 0, 0, 0.59);
+  -moz-box-shadow: 10px 10px 37px 5px rgba(0, 0, 0, 0.59);
+  box-shadow: 10px 10px 37px 5px rgba(0, 0, 0, 0.59);
 }
 
 #display {
@@ -33,6 +40,9 @@ span {
   margin-bottom: 10px;
   border-radius: 10px;
   padding: 20px 10px;
+  -webkit-box-shadow: inset 10px 10px 90px -40px rgba(0, 0, 0, 1);
+  -moz-box-shadow: inset 10px 10px 90px -40px rgba(0, 0, 0, 1);
+  box-shadow: inset 10px 10px 90px -40px rgba(0, 0, 0, 1);
 }
 
 #grid-wrapper {
