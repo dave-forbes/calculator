@@ -26,6 +26,22 @@ function squareRoot(num1) {
   }
 }
 
+function modulo(num1, num2) {                     //not working for negative values yet
+  if (num1 > 0) {
+    for (let i = 0; i < num1; i++) {
+      if (i * num2 > num1) {
+        return num1 - (i - 1) * num2;
+      }
+    }
+  } else if (num1 < 0) {
+    for (let i = 0; i > num1; i--) {
+      if (i * num2 < num1) {
+        return num1 - (i + 1) * num2;
+      }
+    }
+  }
+}
+
 let num1;
 let num2;
 let operator;
@@ -43,6 +59,8 @@ function operate(num1, num2, operator) {
     return divide(num1, num2);
   } else if (operator == '√') {
     return squareRoot(num1);
+  } else if (operator == '%') {
+    return modulo(num1, num2);
   }
 }
 
@@ -78,6 +96,7 @@ const decimal = document.querySelector('#decimal');
 const cancelError = document.querySelector('#ce');
 const squareRootButton = document.querySelector('#sqroot');
 const plusMinus = document.querySelector('#plus-minus');
+const moduloButton = document.querySelector('#modulo');
 const allButtons = document.querySelectorAll('button');
 let displayValue = '';
 let result = 0;
@@ -169,6 +188,13 @@ plusMinus.addEventListener('click', () => {
     displayValue = displayValue.slice(1);
     display.firstChild.textContent = display.firstChild.textContent.slice(1);
   }
+})
+
+moduloButton.addEventListener('click', () => {
+  let span = document.createElement('p');
+  span.textContent = '%';
+  display.appendChild(span);
+  displayValue += '%';
 })
 
 clear.addEventListener('click', () => {
