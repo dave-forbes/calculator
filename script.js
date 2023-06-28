@@ -24,13 +24,13 @@ let operator;
 
 function operate(num1, num2, operator) {
   if (operator == '+') {
-    return add(num1, num2);
+    return Math.round(add(num1, num2) * 1000) / 1000;
   } else if (operator == '-') {
-    return subtract(num1, num2);
+    return Math.round(subtract(num1, num2) * 1000) / 1000;
   } else if (operator == '*') {
-    return multiply(num1, num2);
+    return Math.round(multiply(num1, num2) * 1000) / 1000;
   } else if (operator == '/') {
-    return divide(num1, num2);
+    return Math.round(divide(num1, num2) * 1000) / 1000;
   }
 }
 
@@ -65,13 +65,13 @@ allButtons.forEach(item => item.addEventListener('click', () => {
   }
 }))
 
-calculator.addEventListener('click', () => {
-  operatorIndex = displayValue.search(/[^0-9]/g);
+allButtons.forEach(item => item.addEventListener('click', () => {
+  operatorIndex = displayValue.search(/[^0-9^.]/g);
   num1 = Number(displayValue.slice(0, operatorIndex));
   num2 = Number(displayValue.slice(operatorIndex + 1, displayValue.length));
   operator = displayValue[operatorIndex];
   result = operate(num1, num2, operator);
-})
+}))
 
 let arr = [zero, one, two, three, four, five, six, seven, eight, nine, addButton, subtractButton, multiplyButton, divideButton, equals, clear];
 
