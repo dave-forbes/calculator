@@ -34,6 +34,16 @@ function operate(num1, num2, operator) {
   }
 }
 
+function checkResult(result) {
+  if (result) {
+    display.innerHTML = '';
+    let span = document.createElement('span');
+    span.textContent = result;
+    display.appendChild(span);
+    displayValue = result.toString();
+  }
+}
+
 const zero = document.querySelector('#zero');
 const one = document.querySelector('#one');
 const two = document.querySelector('#two');
@@ -85,13 +95,7 @@ for (let i = 0; i < 10; i++) {
 }
 
 addButton.addEventListener('click', () => {
-  if (result) {
-    display.innerHTML = '';
-    let span = document.createElement('span');
-    span.textContent = result;
-    display.appendChild(span);
-    displayValue = result.toString();
-  }
+  checkResult(result);
   let span = document.createElement('span');
   span.textContent = '+';
   display.appendChild(span);
@@ -99,13 +103,7 @@ addButton.addEventListener('click', () => {
 })
 
 subtractButton.addEventListener('click', () => {
-  if (result) {
-    display.innerHTML = '';
-    let span = document.createElement('span');
-    span.textContent = result;
-    display.appendChild(span);
-    displayValue = result.toString();
-  }
+  checkResult(result);
   let span = document.createElement('span');
   span.textContent = '-';
   display.appendChild(span);
@@ -113,13 +111,7 @@ subtractButton.addEventListener('click', () => {
 })
 
 multiplyButton.addEventListener('click', () => {
-  if (result) {
-    display.innerHTML = '';
-    let span = document.createElement('span');
-    span.textContent = result;
-    display.appendChild(span);
-    displayValue = result.toString();
-  }
+  checkResult(result);
   let span = document.createElement('span');
   span.textContent = 'x';
   display.appendChild(span);
@@ -127,13 +119,7 @@ multiplyButton.addEventListener('click', () => {
 })
 
 divideButton.addEventListener('click', () => {
-  if (result) {
-    display.innerHTML = '';
-    let span = document.createElement('span');
-    span.textContent = result;
-    display.appendChild(span);
-    displayValue = result.toString();
-  }
+  checkResult(result);
   let span = document.createElement('span');
   span.textContent = '÷';
   display.appendChild(span);
@@ -152,4 +138,6 @@ clear.addEventListener('click', () => {
   display.innerHTML = '';
   displayValue = '';
 })
+
+
 
