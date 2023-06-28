@@ -67,31 +67,18 @@ const calculator = document.querySelector('#calculator');
 const decimal = document.querySelector('#decimal');
 const cancelError = document.querySelector('#ce');
 const allButtons = document.querySelectorAll('button');
-
 let displayValue = '';
 let result = 0;
 let operatorIndex;
 
+let arr = [zero, one, two, three, four, five, six, seven, eight, nine, addButton, subtractButton, multiplyButton, divideButton, equals, clear];
+
 allButtons.forEach(item => item.addEventListener('click', () => {
-  if (displayValue == 'Impossible...') {
+  if (displayValue == 'Impossible...' || displayValue == 'Error') {
     display.innerHTML = '';
     displayValue = '';
   }
 }))
-
-allButtons.forEach(item => item.addEventListener('click', () => {
-  if (displayValue[0] == '-') {
-    operatorIndex = displayValue.slice(1).search(/[^0-9^.]/g) + 1;
-  } else {
-    operatorIndex = displayValue.search(/[^0-9^.]/g);
-  }
-  num1 = Number(displayValue.slice(0, operatorIndex));
-  num2 = Number(displayValue.slice(operatorIndex + 1, displayValue.length + 1));
-  operator = displayValue[operatorIndex];
-  result = operate(num1, num2, operator);
-}))
-
-let arr = [zero, one, two, three, four, five, six, seven, eight, nine, addButton, subtractButton, multiplyButton, divideButton, equals, clear];
 
 for (let i = 0; i < 10; i++) {
   arr[i].addEventListener('click', () => {
@@ -165,6 +152,29 @@ cancelError.addEventListener('click', () => {
   let lastChild = display.lastChild;
   lastChild.remove();
 })
+
+
+allButtons.forEach(item => item.addEventListener('click', () => {
+  if (displayValue.length > 12) {
+    display.innerHTML = '';
+    let span = document.createElement('span');
+    span.textContent = 'Error';
+    display.appendChild(span);
+    displayValue = 'Error';
+  }
+}))
+
+allButtons.forEach(item => item.addEventListener('click', () => {
+  if (displayValue[0] == '-') {
+    operatorIndex = displayValue.slice(1).search(/[^0-9^.]/g) + 1;
+  } else {
+    operatorIndex = displayValue.search(/[^0-9^.]/g);
+  }
+  num1 = Number(displayValue.slice(0, operatorIndex));
+  num2 = Number(displayValue.slice(operatorIndex + 1, displayValue.length + 1));
+  operator = displayValue[operatorIndex];
+  result = operate(num1, num2, operator);
+}))
 
 
 
