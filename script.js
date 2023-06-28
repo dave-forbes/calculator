@@ -65,6 +65,7 @@ const clear = document.querySelector('#clear');
 const display = document.querySelector('#display');
 const calculator = document.querySelector('#calculator');
 const decimal = document.querySelector('#decimal');
+const cancelError = document.querySelector('#ce');
 const allButtons = document.querySelectorAll('button');
 
 let displayValue = '';
@@ -157,6 +158,12 @@ decimal.addEventListener('click', () => {
 clear.addEventListener('click', () => {
   display.innerHTML = '';
   displayValue = '';
+})
+
+cancelError.addEventListener('click', () => {
+  displayValue = displayValue.slice(0, displayValue.length - 1);
+  let lastChild = display.lastChild;
+  lastChild.remove();
 })
 
 
