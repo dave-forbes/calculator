@@ -21,5 +21,6 @@ It was great to practise and solidify my javascript knowledge in this project, I
 * Some bugs involving text overflowing to the left of the display.
 * The modulo function doesn't 100% work for all numbers yet.
 * Dividing by 0 should display 'Impossible...' but for some reason doesn't. 
-* Would be cool to add an ON function so that you can turn it on before doing any calulations. 
+* Would be cool to add an ON function so that you can turn it on before doing any calulations.
+* Square root only works with whole numbers at the moment. 
 
