@@ -1,12 +1,19 @@
 body {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   background-color: bisque;
   margin: 0;
+}
 
+h1 {
+  font-family: Bungee Shade;
+  font-size: clamp(35px, 6vw, 60px);
+  margin: 0;
+  text-align: center;
 }
 
 button {
@@ -74,4 +81,13 @@ p {
 
 .red {
   background-color: rgb(205, 2, 110);
+}
+
+footer {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
 }
