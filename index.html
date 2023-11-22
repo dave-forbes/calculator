@@ -13,36 +13,41 @@
 
 <body>
   <div id="calculator">
-    <div id="display"></div>
+    <div id="display">
+      <div id="calculator-memory"></div>
+      <div id="error"></div>
+      <div id="flashing"></div>
+      <div id="display-input"></div>
+      <div id="display-eval"></div>
+    </div>
     <div id="grid-wrapper">
       <button id="mc" class="memory">MC</button>
       <button id="m+" class="memory">M+</button>
       <button id="m-" class="memory">M-</button>
       <button id="mr" class="memory">MR</button>
-      <button id="clear" class="blue">C</button>
-      <button id="divide" class="operator blue"><i class="fa-solid fa-divide"></i></button>
-      <button id="multiply" class="operator blue"><i class="fa-solid fa-xmark"></i></button>
-      <button id="delete" class="blue"><i class="fa-solid fa-delete-left"></i></button>
+      <button id="clear" class="blue" data-value="clear">C</button>
+      <button id="divide" class="operator blue" data-value="/"><i class="fa-solid fa-divide" data-value="/"></i></button>
+      <button id="multiply" class="operator blue" data-value="*"><i class="fa-solid fa-xmark" data-value="*"></i></button>
+      <button id="delete" class="blue" data-value="delete"><i class="fa-solid fa-delete-left" data-value="delete"></i></button>
       <button id="seven" class="number">7</button>
       <button id="eight" class="number">8</button>
       <button id="nine" class="number">9</button>
-      <button id="subtract" class="operator blue"><i class="fa-solid fa-minus"></i></button>
+      <button id="subtract" class="operator blue" data-value="-"><i class="fa-solid fa-minus" data-value="-"></i></button>
       <button id="four" class="number">4</button>
       <button id="five" class="number">5</button>
       <button id="six" class="number">6</button>
-      <button id="add" class="operator blue"><i class="fa-solid fa-plus"></i></button>
+      <button id="add" class="operator blue" data-value="+"><i class="fa-solid fa-plus" data-value="+"></i></button>
       <button id="one" class="number">1</button>
       <button id="two" class="number">2</button>
       <button id="three" class="number">3</button>
-      <button id="equals" class="operator blue"><i class="fa-solid fa-equals"></i></button>
-      <button id="percentage"class="operator"><i class="fa-solid fa-percent"></i></button>
+      <button id="equals" class="blue" data-value="="><i class="fa-solid fa-equals" data-value="="></i></button>
+      <button id="percentage"class="operator" data-value="%"><i class="fa-solid fa-percent" data-value="%"></i></button>
       <button id="zero" class="number">0</button>
-      <button id="decimal">.</button>
-      
+      <button id="decimal" class="number">.</button>
     </div>
   </div>
   <footer>
-    <p><i class="fa solid fa-copyright"></i> Dave Forbes</p>
+    <p> <i class="fa-solid fa-code"></i> by Dave Forbes</p>
     <a target="_blank" href="https://github.com/dave-forbes/calculator">
       <i class="fa-brands fa-github fa-2x"></i></a>
   </footer>

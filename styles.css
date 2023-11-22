@@ -1,5 +1,6 @@
-:root {
+* {
   box-sizing: border-box;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
 #calculator {
   width: 320px;
   height: 600px;
-  background-color: rgb(234, 237, 240);
+  background-color: rgb(224, 228, 232);
   border-radius: 20px;
   -webkit-box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.4);
@@ -27,16 +28,60 @@ body {
 
 #display {
   display: flex;
-  justify-content: end;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
   color: black;
   height: 150px;
-  font-size: 40px;
+  padding: 20px;
+  position: relative;
+}
+
+#calculator-memory {
+  position:absolute;
+  font-size: 15px;
+  top:20px;
+  left:20px;
+}
+
+#display-input {
+  font-size: 45px;
+  height: 52px;
+}
+
+#display-eval {
+  font-size: 30px;
+  height: 36px;
+}
+
+#error {
+  top: 50px;
+  color: red;
+  position: absolute;
+  font-size: 25px;
+}
+
+#flashing {
+  position: absolute;
+  font-size: 45px;
+  height: 52px;
+  top: 30px;
+  right: 18px;
+  animation: flash 1s linear infinite; 
+}
+
+@keyframes flash {
+  from {
+    border: none;
+  }
+  to {
+    border: 1px solid blue;
+  }
 }
 
 #grid-wrapper {
-  height: 400px;
-  width: 280px;
+  height: 450px;
+  width: 320px;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -45,25 +90,27 @@ body {
   padding: 25px 20px 25px 20px;
   background-color: rgb(242, 242, 243);
   border-radius: 20px;
+  -webkit-box-shadow: 0px -3px 16px 0px rgba(0, 0, 0, 0.087);
+  -moz-box-shadow: 0px -3px 16px 0px rgba(0, 0, 0, 0.087);
+  box-shadow: 0px -3px 16px 0px rgba(0, 0, 0, 0.087);
 }
 
 button {
   border-radius: 50%;
-  font-size: clamp(16px, 1vw, 20px);
   background-color: rgb(247, 247, 247);
   color: rgb(0, 0, 0);
   border: 1px rgba(255, 255, 255, 0.256) solid;
   -webkit-box-shadow: 1px 2px 1px 0px rgba(0, 0, 0, 0.079);
   -moz-box-shadow: 1px 2px 1px 0px rgba(0, 0, 0, 0.079);
-  box-shadow: 1px 2px 1px 0px rgba(0, 0, 0, 0.079);
+  box-shadow: 1px 2px 1px 1px rgba(0, 0, 0, 0.079);
   width: 50px;
   height: 50px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
   background-color: white;
-  transition: 0.5s;
   background-color: rgb(189, 189, 189);
   border: none;
 }
@@ -77,11 +124,11 @@ p {
 }
 
 .number {
-  font-size: 27px;
+  font-size: 29px;
 }
 
 .operator {
-  font-size: 22px;
+  font-size: 23px;
 }
 
 #delete {
@@ -98,6 +145,7 @@ p {
   background-color: blue;
   color: white;
   height: 120px;
+  font-size: 24px;
 }
 
 button#equals:hover {
@@ -110,15 +158,34 @@ button#equals:hover {
 }
 
 .memory {
-  font-size: 21px;
+  font-size: 20px;
+}
+
+.hover {
+  background-color: white;
+  background-color: rgb(189, 189, 189);
+  border: none;
 }
 
 footer {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 5px;
   margin: 10px;
+}
+
+i.fa-github {
+  color: white;
+}
+
+i.fa-github:hover {
+  color: black;
+}
+
+@media (min-height: 900px) {
+  body {
+    justify-content: space-evenly;
+  }
 }
