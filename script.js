@@ -20,40 +20,63 @@ function percentage(num1, num2) {
 
 function operate(num1, num2, operator) {
   if (operator == "+") {
-    return Math.round(add(num1, num2) * 1000) / 1000;
+    return Math.round(add(num1, num2) * 1000000) / 1000000;
   } else if (operator == "-") {
-    return Math.round(subtract(num1, num2) * 1000) / 1000;
+    return Math.round(subtract(num1, num2) * 1000000) / 1000000;
   } else if (operator == "*") {
-    return Math.round(multiply(num1, num2) * 1000) / 1000;
+    return Math.round(multiply(num1, num2) * 1000000) / 1000000;
   } else if (operator == "/" && num2 !== 0) {
-    return Math.round(divide(num1, num2) * 1000) / 1000;
+    return Math.round(divide(num1, num2) * 1000000) / 1000000;
   } else if (operator == "%") {
     return percentage(num1, num2);
   }
 }
 
+function findOperatorIndex(string) {
+  if (string[0] == "-") {
+    return string.slice(1).search(/[^0-9^.]/g) + 1;
+  } else {
+    return string.search(/[^0-9^.]/g);
+  }
+}
+
+function evaluateString(string) {
+  string = string.replace("÷", "/");
+  string = string.replace("x", "*");
+  const operatorIndex = findOperatorIndex(string);
+  const operator = string[operatorIndex];
+  const num1 = parseFloat(string.slice(0, operatorIndex));
+  const num2 = parseFloat(string.slice(operatorIndex + 1, string.length));
+  console.log(operator);
+  return num1 && num2 ? operate(num1, num2, operator) : "";
+}
+
 let displayString = "";
-let calculatorString = "";
-let result = "";
-let calculatorMemory = "";
+let calcString = "";
+let evalString = "";
+let calcMemory = "";
 const displayInput = document.querySelector("#display-input");
 const displayEval = document.querySelector("#display-eval");
 const errorDisplay = document.querySelector("#error");
 
 function backSpace() {
-  calculatorString = calculatorString.slice(0, calculatorString.length - 1);
+  calcString = calcString.slice(0, calcString.length - 1);
   displayString = displayString.slice(0, displayString.length - 1);
-  result = evaluateCalculatorString();
-  if (result) displayEval.textContent = result.toString();
+  if (findOperatorIndex(calcString) === -1) calcString = displayString;
+  evalString = evaluateString(calcString).toString();
+  if (evalString) {
+    displayEval.textContent = evalString;
+  } else {
+    evalString = "";
+    displayEval.textContent = "";
+  }
   displayInput.textContent = displayString;
 }
 
 function equals() {
-  if (result !== "") {
-    displayInput.textContent = result;
-    displayString = result;
-    calculatorString = result;
-  }
+  displayInput.textContent = evalString;
+  displayString = evalString;
+  calcString = evalString;
   displayEval.textContent = "";
 }
 
@@ -62,89 +85,62 @@ function clear() {
   displayEval.textContent = "";
   errorDisplay.textContent = "";
   displayString = "";
-  calculatorString = "";
-  result = "";
+  calcString = "";
+  evalString = "";
 }
 
 function addToStrings(value, operator) {
-  if (operator) {
-    if (result !== "") {
-      calculatorString = result + value;
-    } else {
-      calculatorString += value;
-    }
+  if (operator && evalString !== "") {
+    calcString = evalString + value;
   } else {
-    calculatorString += value;
+    calcString += value;
   }
   displayString = displayString + value;
   displayString = displayString.replace("/", "÷");
   displayString = displayString.replace("*", "x");
   displayInput.textContent = displayString;
-  if (evaluateCalculatorString()) {
-    result = evaluateCalculatorString().toString();
-    displayEval.textContent = result;
+  evalString = evaluateString(calcString);
+  if (evalString) {
+    evalString = evalString.toString();
+    displayEval.textContent = evalString;
   } else {
-    result = "";
+    evalString = "";
   }
 }
 
-function evaluateCalculatorString() {
-  if (calculatorString[0] == "-") {
-    operatorIndex = calculatorString.slice(1).search(/[^0-9^.]/g) + 1;
-  } else {
-    operatorIndex = calculatorString.search(/[^0-9^.]/g);
-  }
-  const num1Str = calculatorString.slice(0, operatorIndex);
-  const num2Str = calculatorString.slice(
-    operatorIndex + 1,
-    calculatorString.length + 1
-  );
-  const num1 = parseFloat(num1Str);
-  const num2 = parseFloat(num2Str);
-  const operator = calculatorString[operatorIndex];
-  if (num1 && num2) {
-    return operate(num1, num2, operator);
-  } else {
-    return false;
-  }
-}
-
-const calculatorMemoryDisplay = document.querySelector("#calculator-memory");
+const calcMemoryDisplay = document.querySelector("#calculator-memory");
 
 function addToMemory() {
-  if (calculatorString === "") {
+  if (calcString === "") {
     return;
-  } else if (calculatorMemory !== "") {
-    calculatorMemory =
-      parseFloat(calculatorString) + parseFloat(calculatorMemory);
-    calculatorMemory.toString();
+  } else if (calcMemory !== "") {
+    calcMemory = parseFloat(calcString) + parseFloat(calcMemory);
+    calcMemory.toString();
   } else {
-    calculatorMemory = calculatorString;
+    calcMemory = calcString;
   }
-  calculatorMemoryDisplay.textContent = `M = ${calculatorMemory}`;
+  calcMemoryDisplay.textContent = `M = ${calcMemory}`;
 }
 
 function subtractFromMemory() {
-  if (calculatorString === "") {
+  if (calcString === "") {
     return;
-  } else if (calculatorMemory !== "") {
-    calculatorMemory =
-      parseFloat(calculatorMemory) - parseFloat(calculatorString);
-    calculatorMemory.toString();
+  } else if (calcMemory !== "") {
+    calcMemory = parseFloat(calcMemory) - parseFloat(calcString);
+    calcMemory.toString();
   } else {
-    calculatorMemory = calculatorString;
+    calcMemory = calcString;
   }
-  calculatorMemoryDisplay.textContent = `M = ${calculatorMemory}`;
+  calcMemoryDisplay.textContent = `M = ${calcMemory}`;
 }
 
 function recallMemory() {
-  console.log(calculatorMemory);
-  addToStrings(calculatorMemory.toString());
+  addToStrings(calcMemory);
 }
 
 function clearMemory() {
-  calculatorMemory = "";
-  calculatorMemoryDisplay.textContent = "";
+  calcMemory = "";
+  calcMemoryDisplay.textContent = "";
 }
 
 function handleButtonClick(e) {
@@ -251,41 +247,47 @@ function keyDownDisplay(key) {
   }
 }
 
-function toggleButtonsDisabled() {
-  const allButtons = document.querySelectorAll("button");
-  allButtons.forEach(
-    (button) => (button.disabled = button.disabled === true ? false : true)
-  );
-  keysDisabled = keysDisabled === true ? false : true;
-  console.log(keysDisabled);
-}
-
 function checkForErrors() {
-  if (displayString.length > 11) {
+  let error = false;
+  if (displayString.length > 14 || evalString.length > 50) {
     clear();
-    displayInput.textContent = "";
     errorDisplay.textContent = "Error, too many digits";
-    toggleButtonsDisabled();
-    setTimeout(clear, 2000);
-    setTimeout(toggleButtonsDisabled, 2200);
-  } else if (calculatorString.match(/(\/0)/g)) {
+    error = true;
+  } else if (calcString.match(/(\/0)/g)) {
     clear();
-    displayInput.textContent = "";
     errorDisplay.textContent = "Error, can't divide by 0";
-    toggleButtonsDisabled();
-    setTimeout(clear, 2000);
-    setTimeout(toggleButtonsDisabled, 2200);
+    error = true;
   } else if (displayString.match(/(\.\.)/)) {
     clear();
-    displayInput.textContent = "";
     errorDisplay.textContent = "Error, two decimal points";
-    toggleButtonsDisabled();
-    setTimeout(clear, 2000);
-    setTimeout(toggleButtonsDisabled, 2200);
-  } else if (displayString.match(/([x+-/*%÷][x+-/*%÷])/)) {
+    error = true;
+  } else if (displayString.match(/([x+-/*%÷][x+/*%÷])/)) {
     clear();
-    displayInput.textContent = "";
     errorDisplay.textContent = "Error, two operators";
+    error = true;
+  } else if (
+    findOperatorIndex(displayString) === -1 &&
+    displayString.match(/(\.\w+)\./)
+  ) {
+    clear();
+    errorDisplay.textContent = "Error, two decimals";
+    error = true;
+  } else if (displayString.match(/(\.\w+){2}\./)) {
+    clear();
+    errorDisplay.textContent = "Error, two decimals";
+    error = true;
+  }
+
+  function toggleButtonsDisabled() {
+    const allButtons = document.querySelectorAll("button");
+    allButtons.forEach(
+      (button) => (button.disabled = button.disabled === true ? false : true)
+    );
+    keysDisabled = keysDisabled === true ? false : true;
+  }
+
+  if (error) {
+    displayInput.textContent = "";
     toggleButtonsDisabled();
     setTimeout(clear, 2000);
     setTimeout(toggleButtonsDisabled, 2200);
@@ -298,8 +300,8 @@ document.addEventListener("click", checkForErrors);
 window.addEventListener("keydown", checkForErrors);
 
 // document.addEventListener("click", () => {
-//   console.log({ calculatorString, displayString, result });
+//   console.log({ calcString, displayString, evalString });
 // });
 // window.addEventListener("keydown", () => {
-//   console.log({ calculatorString, displayString, result });
+//   console.log({ calcString, displayString, evalString });
 // });
