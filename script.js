@@ -47,7 +47,6 @@ function evaluateString(string) {
   const operator = string[operatorIndex];
   const num1 = parseFloat(string.slice(0, operatorIndex));
   const num2 = parseFloat(string.slice(operatorIndex + 1, string.length));
-  console.log(operator);
   return num1 && num2 ? operate(num1, num2, operator) : "";
 }
 
@@ -63,9 +62,9 @@ function backSpace() {
   calcString = calcString.slice(0, calcString.length - 1);
   displayString = displayString.slice(0, displayString.length - 1);
   if (findOperatorIndex(calcString) === -1) calcString = displayString;
-  evalString = evaluateString(calcString).toString();
+  evalString = evaluateString(calcString);
   if (evalString) {
-    displayEval.textContent = evalString;
+    displayEval.textContent = evalString.toString();
   } else {
     evalString = "";
     displayEval.textContent = "";
@@ -181,6 +180,7 @@ let keysDisabled = false;
 
 function handleKeyDown(e) {
   if (keysDisabled === true) return;
+  if (e.key === "Enter" && e.srcElement === document.activeElement) return;
   if (parseInt(e.key) || e.key === "0") {
     addToStrings(e.key);
     keyDownDisplay(e.key);
