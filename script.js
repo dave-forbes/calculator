@@ -262,22 +262,11 @@ function checkForErrors() {
     clear();
     errorDisplay.textContent = "Error, can't divide by 0";
     error = true;
-  } else if (displayString.match(/(\.\.)/)) {
-    clear();
-    errorDisplay.textContent = "Error, two decimal points";
-    error = true;
   } else if (displayString.match(/([x+-/*%÷][x+/*%÷])/)) {
     clear();
     errorDisplay.textContent = "Error, two operators";
     error = true;
-  } else if (
-    findOperatorIndex(displayString) === -1 &&
-    displayString.match(/(\.\w+)\./)
-  ) {
-    clear();
-    errorDisplay.textContent = "Error, two decimals";
-    error = true;
-  } else if (displayString.match(/(\.\w+){2}\./)) {
+  } else if (displayString.match(/(\.\w+)\./)) {
     clear();
     errorDisplay.textContent = "Error, two decimals";
     error = true;
