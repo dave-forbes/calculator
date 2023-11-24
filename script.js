@@ -180,7 +180,12 @@ let keysDisabled = false;
 
 function handleKeyDown(e) {
   if (keysDisabled === true) return;
-  if (e.key === "Enter" && e.srcElement === document.activeElement) return;
+  if (
+    e.key === "Enter" &&
+    e.target === document.activeElement &&
+    e.target !== document.body
+  )
+    return;
   if (parseInt(e.key) || e.key === "0") {
     addToStrings(e.key);
     keyDownDisplay(e.key);
