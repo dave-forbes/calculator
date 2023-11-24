@@ -266,7 +266,10 @@ function checkForErrors() {
     clear();
     errorDisplay.textContent = "Error, two operators";
     error = true;
-  } else if (displayString.match(/(\.\w+)\./)) {
+  } else if (
+    displayString.match(/(\.[^x%+/-]+)\./) ||
+    displayString.match(/\.\./)
+  ) {
     clear();
     errorDisplay.textContent = "Error, two decimals";
     error = true;
