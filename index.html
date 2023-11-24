@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A javascript calculator app made for Odin Project foundations course." />
   <link rel="stylesheet" href="styles.css">
   <title>Dave's Calculator</title>
   <script src="https://kit.fontawesome.com/1defe17cdd.js" crossorigin="anonymous"></script>
@@ -26,29 +27,29 @@
       <button id="m-" class="memory">M-</button>
       <button id="mr" class="memory">MR</button>
       <button id="clear" class="blue" data-value="clear">C</button>
-      <button id="divide" class="operator blue" data-value="/"><i class="fa-solid fa-divide" data-value="/"></i></button>
-      <button id="multiply" class="operator blue" data-value="*"><i class="fa-solid fa-xmark" data-value="*"></i></button>
-      <button id="delete" class="blue" data-value="delete"><i class="fa-solid fa-delete-left" data-value="delete"></i></button>
+      <button id="divide" class="operator blue" data-value="/" aria-label='divide'><i class="fa-solid fa-divide" data-value="/"></i></button>
+      <button id="multiply" class="operator blue" data-value="*" aria-label='multiply'><i class="fa-solid fa-xmark" data-value="*"></i></button>
+      <button id="delete" class="blue" data-value="delete" aria-label='backspace'><i class="fa-solid fa-delete-left" data-value="delete"></i></button>
       <button id="seven" class="number">7</button>
       <button id="eight" class="number">8</button>
       <button id="nine" class="number">9</button>
-      <button id="subtract" class="operator blue" data-value="-"><i class="fa-solid fa-minus" data-value="-"></i></button>
+      <button id="subtract" class="operator blue" data-value="-" aria-label='subtract'><i class="fa-solid fa-minus" data-value="-"></i></button>
       <button id="four" class="number">4</button>
       <button id="five" class="number">5</button>
       <button id="six" class="number">6</button>
-      <button id="add" class="operator blue" data-value="+"><i class="fa-solid fa-plus" data-value="+"></i></button>
+      <button id="add" class="operator blue" data-value="+" aria-label='add'><i class="fa-solid fa-plus" data-value="+"></i></button>
       <button id="one" class="number">1</button>
       <button id="two" class="number">2</button>
       <button id="three" class="number">3</button>
-      <button id="equals" class="blue" data-value="="><i class="fa-solid fa-equals" data-value="="></i></button>
-      <button id="percentage"class="operator" data-value="%"><i class="fa-solid fa-percent" data-value="%"></i></button>
+      <button id="equals" class="blue" data-value="=" aria-label='equals'><i class="fa-solid fa-equals" data-value="="></i></button>
+      <button id="percentage"class="operator" data-value="%" aria-label='percentage'><i class="fa-solid fa-percent" data-value="%"></i></button>
       <button id="zero" class="number">0</button>
       <button id="decimal" class="number">.</button>
     </div>
   </div>
   <footer>
     <p> <i class="fa-solid fa-code"></i> by Dave Forbes</p>
-    <a target="_blank" href="https://github.com/dave-forbes/calculator">
+    <a target="_blank" href="https://github.com/dave-forbes/calculator" aria-label='Link to GitHub, opens new tab'>
       <i class="fa-brands fa-github fa-2x"></i></a>
   </footer>
   <script src="script.js"></script>
