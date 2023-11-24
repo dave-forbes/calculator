@@ -215,19 +215,21 @@ function handleKeyDown(e) {
 }
 
 function keyDownDisplay(key) {
+  function breiflyToggleHoverClass(node) {
+    node.classList.toggle("hover");
+    setTimeout(() => node.classList.toggle("hover"), 200);
+  }
   const allNumbers = document.querySelectorAll(".number");
-  allNumbers.forEach((numbers) => {
-    if (numbers.textContent === key) {
-      numbers.classList.toggle("hover");
-      setTimeout(() => numbers.classList.toggle("hover"), 200);
+  allNumbers.forEach((number) => {
+    if (number.textContent === key) {
+      breiflyToggleHoverClass(number);
     }
   });
 
   const allOperators = document.querySelectorAll(".operator");
   allOperators.forEach((operator) => {
     if (operator.dataset.value === key) {
-      operator.classList.toggle("hover");
-      setTimeout(() => operator.classList.toggle("hover"), 200);
+      breiflyToggleHoverClass(operator);
     }
   });
   const equals = document.querySelector("#equals");
@@ -237,13 +239,11 @@ function keyDownDisplay(key) {
   }
   const clear = document.querySelector("#clear");
   if (key === clear.dataset.value) {
-    clear.classList.toggle("hover");
-    setTimeout(() => clear.classList.toggle("hover"), 200);
+    breiflyToggleHoverClass(clear);
   }
   const deleteKey = document.querySelector("#delete");
   if (key === deleteKey.dataset.value) {
-    deleteKey.classList.toggle("hover");
-    setTimeout(() => deleteKey.classList.toggle("hover"), 200);
+    breiflyToggleHoverClass(deleteKey);
   }
 }
 
