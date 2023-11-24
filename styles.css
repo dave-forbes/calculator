@@ -48,6 +48,7 @@ body {
 #display-input {
   font-size: 45px;
   height: 52px;
+  white-space:nowrap;
 }
 
 #display-eval {
