@@ -47,7 +47,9 @@ function evaluateString(string) {
   const operator = string[operatorIndex];
   const num1 = parseFloat(string.slice(0, operatorIndex));
   const num2 = parseFloat(string.slice(operatorIndex + 1, string.length));
-  return num1 && num2 ? operate(num1, num2, operator) : "";
+  return (num1 && num2) || num1 === 0 || num2 === 0
+    ? operate(num1, num2, operator)
+    : "";
 }
 
 let displayString = "";
@@ -63,7 +65,7 @@ function backSpace() {
   displayString = displayString.slice(0, displayString.length - 1);
   if (findOperatorIndex(calcString) === -1) calcString = displayString;
   evalString = evaluateString(calcString);
-  if (evalString) {
+  if (evalString || evalString === 0) {
     displayEval.textContent = evalString.toString();
   } else {
     evalString = "";
@@ -99,7 +101,7 @@ function addToStrings(value, operator) {
   displayString = displayString.replace("*", "x");
   displayInput.textContent = displayString;
   evalString = evaluateString(calcString);
-  if (evalString) {
+  if (evalString || evalString === 0) {
     evalString = evalString.toString();
     displayEval.textContent = evalString;
   } else {
