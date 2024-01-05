@@ -260,19 +260,15 @@ function checkForErrors() {
     clear();
     errorDisplay.textContent = "Error, too many digits";
     error = true;
-  } else if (calcString.match(/(\/0)/g)) {
-    clear();
-    errorDisplay.textContent = "Error, can't divide by 0";
-    error = true;
   } else if (displayString.match(/([x+-/*%÷][x+/*%÷])/)) {
     clear();
     errorDisplay.textContent = "Error, two operators";
     error = true;
   } else if (
-    displayString.match(/(\.[^x%+/-]+)\./) ||
+    displayString.match(/(\.[^x%+/÷-]+)\./) ||
     displayString.match(/\.\./)
   ) {
-    clear();
+    backSpace();
     errorDisplay.textContent = "Error, two decimals";
     error = true;
   }
